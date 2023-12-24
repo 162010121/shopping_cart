@@ -10,7 +10,7 @@ import com.shoppingservice.user.payload.Responce;
 public interface UserService {
 	
 	
-	public User  saveCustomer(User   user);
+	public OrderResponceDTO  saveCustomer(User   user);
 	
 	public List<User> getAllProduct();
 	

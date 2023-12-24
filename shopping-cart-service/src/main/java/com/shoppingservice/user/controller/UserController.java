@@ -30,10 +30,10 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping("/save")
-	public ResponseEntity<User> saveCustomer(@RequestBody User user) {
+	public OrderResponceDTO saveCustomer(@RequestBody User user) {
 
-		User entity = service.saveCustomer(user);
-		return new ResponseEntity<>(entity, HttpStatus.OK);
+		OrderResponceDTO entity = service.saveCustomer(user);
+		return entity;
 
 	}
 

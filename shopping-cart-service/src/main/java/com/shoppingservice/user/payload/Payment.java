@@ -1,6 +1,6 @@
 package com.shoppingservice.user.payload;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class Payment {
 
 	private String paymentStatus;
 
-	private LocalDate PayrmentDate;
+	private Date PayrmentDate;
 	
 	
 	//private AddressDetails customerAddressDetails;

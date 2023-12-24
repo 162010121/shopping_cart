@@ -1,6 +1,8 @@
 package com.shoppingservice.user.serviceimpl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,27 +37,42 @@ public class UserServiceImpl implements UserService {
 //	private UserRepository userRepository;
 
 	@Override
-	public User saveCustomer(User user) {
+	public OrderResponceDTO saveCustomer(User entity) {
 
-		// OrderResponceDTO dto = new OrderResponceDTO();
+		OrderResponceDTO responceDTO = new OrderResponceDTO();
+		Product product = new Product();
+		Payment payment = new Payment();
+		AddressDetails address = new AddressDetails();
 
-//		dto.setPaymentId(user.getPaymentId());
-//		dto.setProductId(user.getProductId());	
-//		dto.setAmount(user.getAmount());
-//		dto.setProductCompany(user.getProductCompany());
-//		dto.setProductName(user.getProductName());
-//		dto.setPincode(user.getPincode());
-//		dto.setPaymentStatus("Order SuccessFully Placed...!");
-//		dto.setPaymentType(user.getPaymentType());
-//		dto.setPayrmentDate(new Date());
-//		dto.setFlatNumber(user.getFlatNumber());
-//		dto.setArea(user.getArea());
-//		dto.setCity(user.getCity());
-//		dto.setState(user.getState());
+		responceDTO.setCustomerId(entity.getCustomerId());
+		responceDTO.setCustomerName(entity.getCustomerName());
+		responceDTO.setEmail(entity.getEmail());
+		responceDTO.setMobileNumber(entity.getMobileNumber());
 
-		repository.save(user);
+		// For Product
+		product.setProductId(entity.getProductId());
+		product.setProductName(entity.getProductName());
+		product.setProductCompany(entity.getProductCompany());
+		product.setQuntity(entity.getQuntity());
 
-		return user;
+		payment.setPaymentId(entity.getPaymentId());
+		payment.setAmount(entity.getAmount());
+		payment.setPaymentStatus(entity.getPaymentStatus());
+		payment.setPaymentType(entity.getPaymentType());
+		payment.setPayrmentDate(new Date());
+
+		address.setFlatNumber(entity.getFlatNumber());
+		address.setArea(entity.getArea());
+		address.setCity(entity.getCity());
+		address.setPincode(entity.getPincode());
+		address.setState(entity.getState());
+		repository.save(entity);
+
+		responceDTO.setProductDetails(product);
+		responceDTO.setPaymentDetails(payment);
+		responceDTO.setCustomerAddressDetails(address);
+
+		return responceDTO;
 	}
 
 	@Override
@@ -67,37 +84,6 @@ public class UserServiceImpl implements UserService {
 	public User getById(long Id) {
 
 		User user = repository.findById(Id).get();
-
-		OrderResponceDTO dto = new OrderResponceDTO();
-
-		dto.setCustomerId(user.getCustomerId());
-		dto.setEmail(user.getEmail());
-		dto.setCustomerName(user.getCustomerName());
-		dto.setMobileNumber(user.getMobileNumber());
-
-		ProductDetails productDetails = new ProductDetails();
-
-		Product product = new Product();
-
-		dto.setProductDetails(product);
-
-//		product.setProductId(user.getProductId());
-//		product.setProductCompany(user.getProductCompany());
-//		product.setProductName(user.getProductName());
-
-		Payment payment = new Payment();
-//		payment.setPaymentId(user.getPaymentId());
-//		payment.setAmount(user.getAmount());
-//		payment.setPaymentStatus(user.getPaymentStatus());
-//		payment.setPaymentType(user.getPaymentType());
-//		payment.setPayrmentDate(new Date(0));
-
-		// AddressDetails address = new AddressDetails();
-//		address.setFlatNumber(user.getFlatNumber());
-//		address.setArea(user.getArea());
-//		address.setCity(user.getCity());
-//		address.setPincode(user.getPincode());
-//		address.setState(user.getState());
 
 		return user;
 	}
@@ -132,7 +118,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Responce getAllOrders() {
 
-		// OrderResponceDTO responceDTODetails = new OrderResponceDTO();
 		Responce responce = new Responce();
 
 		Product product = new Product();
@@ -174,25 +159,6 @@ public class UserServiceImpl implements UserService {
 		responceDTO.setPaymentDetails(payment);
 		responceDTO.setCustomerAddressDetails(address);
 		return responce;
-
-//		List<User> userDetails = repository.findAll();
-//		List<ProductDetails> productDetails = productRepository.findAll();
-//
-//		orderResponceDTO.add(order);
-//
-//		if (!productDetails.isEmpty()) {
-//			List<Product> list = new ArrayList<>();
-//			for (ProductDetails entity : productDetails) {
-//				Product productDTO = new Product();
-//
-//				productDTO.setProductId(entity.getProductId());
-//				productDTO.setProductName(entity.getProductName());
-//				productDTO.setProductName(entity.getProductName());
-//				list.add(productDTO);
-//
-//			}
-//
-//		}
 
 	}
 
