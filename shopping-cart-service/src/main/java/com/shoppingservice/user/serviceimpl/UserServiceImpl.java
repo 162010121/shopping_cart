@@ -1,7 +1,5 @@
 package com.shoppingservice.user.serviceimpl;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shoppingservice.user.entity.ProductDetails;
 import com.shoppingservice.user.entity.User;
 import com.shoppingservice.user.payload.AddressDetails;
 import com.shoppingservice.user.payload.OrderListDTO;
@@ -92,7 +89,7 @@ public class UserServiceImpl implements UserService {
 	public OrderListDTO getAllCustomerOrders() {
 		OrderListDTO orderDTO = new OrderListDTO();
 
-		String serch = "Praveen";
+		String serch = "Praveen Pustera";
 
 //		List<OrderResponceDTO> list=repository.getAllOrders();
 //		List<OrderResponceDTO> orderList=list.stream()
@@ -140,12 +137,14 @@ public class UserServiceImpl implements UserService {
 			product.setProductCompany(entity.getProductCompany());
 			product.setQuntity(entity.getQuntity());
 
+			//For Payment
 			payment.setPaymentId(entity.getPaymentId());
 			payment.setAmount(entity.getAmount());
 			payment.setPaymentStatus(entity.getPaymentStatus());
 			payment.setPaymentType(entity.getPaymentType());
 			// payment.setPayrmentDate(new LocalDate(0));
 
+			//For Address
 			address.setFlatNumber(entity.getFlatNumber());
 			address.setArea(entity.getArea());
 			address.setCity(entity.getCity());

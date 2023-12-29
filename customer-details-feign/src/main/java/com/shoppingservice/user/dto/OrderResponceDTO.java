@@ -19,7 +19,6 @@ public class OrderResponceDTO {
 
 	private long mobileNumber;
 
-
 	private String productComapany;
 
 	private String productName;

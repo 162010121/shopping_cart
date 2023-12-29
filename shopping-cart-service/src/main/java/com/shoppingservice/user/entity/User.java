@@ -2,22 +2,21 @@ package com.shoppingservice.user.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "customer")
+@Table(name = "customer_details")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long customerId;
 
 	private String customerName;
